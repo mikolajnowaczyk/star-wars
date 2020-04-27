@@ -51,12 +51,15 @@ Content
   left: 50%;
   transform: translate(-50%,-50%);
   z-index: 1;
-  animation: intro 6s ease-out 1s; /* 6 1*/
   color: rgb(75, 213, 238);
   font-weight: 400;
   font-size: 1.5rem;
   opacity: 0;
-  display: none;
+  /* display: none; */
+}
+
+.intro-animation {
+  animation: intro 6s ease-out 1s; /* 6 1*/
 }
 
 @keyframes intro {
@@ -76,7 +79,7 @@ Content
 }
 
 /* Set the animation & hide the logo */
-.scaling-svg-container {
+.star-wars-logo {
   position: absolute;
   padding: 0; 
   height: 693px;
@@ -87,11 +90,13 @@ Content
   background-image: url(img/logo.svg);
   background-size: 100% 100%;
   z-index: 1;
-  opacity: 1;
-  animation: 
-  logo1 10s cubic-bezier(1,.64,1,1) forwards 1s,
-  logo2 5s ease-in forwards 11s;
-  /* override this inline for aspect ratio other than square */
+  opacity: 0;
+ }
+
+ .animate-logo {
+   animation: 
+  logo1 13s cubic-bezier(.6,.43,.76,.93) forwards 0s,
+  logo2 5s linear forwards 13s;
  }
 
  /* Scale the logo down and maintain it centered */
@@ -102,7 +107,8 @@ Content
   }
 
   100% {
-      transform: translate(-50%,-50%) scale(1);      
+      transform: translate(-50%,-50%) scale(1);
+      opacity: 1;      
   }
 }
 
@@ -119,6 +125,6 @@ Content
   100% {
       display: none;
       opacity: 0;
-      transform: translate(-50%,-50%) scale(1);      
+      transform: translate(-50%,-50%) scale(0.01);      
   }
 }

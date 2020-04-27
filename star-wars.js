@@ -1,7 +1,17 @@
 // Sets the number of stars we wish to display
 const numStars = window.innerWidth*window.innerHeight / 1000;
 
-function generateStars() {
+function start() {
+  document.getElementById("start-button").style.display = "none";
+  animateIntroText();
+  setTimeout(() => {  animateScene(); }, 7000);
+}
+
+function animateIntroText() {
+  document.getElementsByClassName("intro")[0].classList.add("intro-animation");
+}
+
+function animateScene() {
   // For every star we want to display
   for (let i = 0; i < numStars; i++) {
     let star = document.createElement("div");
@@ -16,13 +26,16 @@ function generateStars() {
       star.classList.add("bigstar");
     }
   }
-}
 
-function deleteStars() {
-  for (let i = 0; i < numStars; i++) {
-    var element = document.getElementById("star");
-    element.parentNode.removeChild(element);
-  }
+  //start logo animation
+  document.getElementsByClassName("star-wars-logo")[0].classList.add("animate-logo");
+
+  //start audio
+  var audio = new Audio('background-music.mp3');
+  audio.volume = 0.2; 
+  audio.play();
+  // document.getElementsByClassName("background-music")[0].play();
+  // console.log('your audio is started just now');
 }
 
 // Gets random x, y values based on the size of the container
@@ -42,16 +55,3 @@ function bigStar() {
     bigstar = true;
   return bigstar;
 }
-
-function resizeHandler() {
-  deleteStars();
-  generateStars();
-}
-
-window.addEventListener('load', (event) => {
-  setTimeout(function(){ generateStars(); }, 7000);
-});
-
-window.addEventListener('resize', (event) => {
-  resizeHandler();
-});
