@@ -7,6 +7,13 @@ function start() {
   setTimeout(() => {  animateScene(); }, 7000);
 }
 
+function startAudio() {
+  var audio = new Audio('background-music.mp3');
+  audio.volume = 0.1; 
+  audio.play();
+}
+
+
 function animateIntroText() {
   document.getElementsByClassName("intro")[0].classList.add("intro-animation");
 }
@@ -27,15 +34,15 @@ function animateScene() {
     }
   }
 
-  //start logo animation
-  document.getElementsByClassName("star-wars-logo")[0].classList.add("animate-logo");
-
   //start audio
-  var audio = new Audio('background-music.mp3');
-  audio.volume = 0.2; 
-  audio.play();
-  // document.getElementsByClassName("background-music")[0].play();
-  // console.log('your audio is started just now');
+  startAudio();
+
+  //start logo animation
+  setTimeout(() => { document.getElementsByClassName("star-wars-logo")[0].classList.add("animate-logo");}, 2000);
+
+  //start text crawl
+  setTimeout(() => { document.getElementsByClassName("text-wrapper")[0].classList.add("text-animation");}, 14500);
+
 }
 
 // Gets random x, y values based on the size of the container
