@@ -3,18 +3,19 @@ html {
   padding: 0;
   height: 100vh;
   width: 100vw;
+  font-size: 16px;
 }
 
 main {
   margin: 0;
-  font-size: 3rem;
 }
 
 body {
   background-color: black;
   font-family: 'Poller One', serif;
-  color: rgb(255, 175, 0);
-  overflow: hidden; /*because logo is too big*/
+  color: #ffaf00;
+  overflow: hidden;
+  /*because logo is too big*/
 }
 
 .star {
@@ -32,113 +33,169 @@ body {
 /*====================================
 Intro text
 ====================================*/
-
 /* Center it, set the color, size and hide the text */
 .intro {
   position: absolute;
   top: 45%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 1;
-  color: rgb(75, 213, 238);
+  color: #4bd5ee;
   font-weight: 400;
   font-size: 1.5rem;
   opacity: 0;
 }
 
 .intro-animation {
-  animation: intro 6s ease-out 1s;
+  -webkit-animation: intro 6s ease-out 1s;
+          animation: intro 6s ease-out 1s;
+}
+
+@-webkit-keyframes intro {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }
 
 @keyframes intro {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   20% {
-      opacity: 1;
+    opacity: 1;
   }
   90% {
-      opacity: 1;
+    opacity: 1;
   }
   100% {
-      opacity: 0;
-      display: none;
+    opacity: 0;
+    display: none;
   }
 }
 
 /*====================================
 Logo
 ====================================*/
-
 .star-wars-logo {
   position: absolute;
-  padding: 0; 
+  padding: 0;
   height: 693px;
   width: 419px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
   background-image: url(img/logo.svg);
   background-size: 100% 100%;
   z-index: 1;
   opacity: 0;
- }
+}
 
- .animate-logo {
-   animation: 
-  logo1 13s cubic-bezier(.6,.43,.76,.93) forwards 0s,
-  logo2 3s linear forwards 13s;
- }
+.animate-logo {
+  -webkit-animation: logo1 13s cubic-bezier(0.6, 0.43, 0.76, 0.93) forwards 0s, logo2 3s linear forwards 13s;
+          animation: logo1 13s cubic-bezier(0.6, 0.43, 0.76, 0.93) forwards 0s, logo2 3s linear forwards 13s;
+}
+
+@-webkit-keyframes logo1 {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(12);
+            transform: translate(-50%, -50%) scale(12);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
 
 @keyframes logo1 {
-  0% {       
-      transform: translate(-50%,-50%) scale(12);
-      opacity: 1;
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(12);
+            transform: translate(-50%, -50%) scale(12);
+    opacity: 1;
   }
-
   100% {
-      transform: translate(-50%,-50%) scale(1);
-      opacity: 1;      
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes logo2 {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.01);
+            transform: translate(-50%, -50%) scale(0.01);
   }
 }
 
 @keyframes logo2 {
-  0% {       
-      transform: translate(-50%,-50%) scale(1);
-      opacity: 1;
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
-
   85% {
     opacity: 1;
   }
-
   100% {
-      display: none;
-      opacity: 0;
-      transform: translate(-50%,-50%) scale(0.01);      
+    display: none;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.01);
+            transform: translate(-50%, -50%) scale(0.01);
   }
 }
 
 /*====================================
 Main text - crawl
 ====================================*/
-
 .prespective-wrapper {
-  perspective: 250px;
+  -webkit-perspective: 250px;
+          perspective: 250px;
   margin-left: 0;
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   z-index: 4;
   width: 100%;
 }
 
 .text-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   opacity: 0;
   /* display: none; */
-  transform: rotateX(30deg) translateY(700px);
+  -webkit-transform: rotateX(30deg) translateY(700px);
+          transform: rotateX(30deg) translateY(700px);
 }
 
 .text {
@@ -148,37 +205,57 @@ Main text - crawl
 }
 
 .text-animation {
-  animation: 
-  text-crawl 55s linear forwards;
+  -webkit-animation: text-crawl 55s linear forwards;
+          animation: text-crawl 55s linear forwards;
+}
+
+@-webkit-keyframes text-crawl {
+  0% {
+    -webkit-transform: rotateX(30deg) translateY(700px);
+            transform: rotateX(30deg) translateY(700px);
+    opacity: 1;
+  }
+  85% {
+    -webkit-transform: rotateX(30deg) translateY(-1200px);
+            transform: rotateX(30deg) translateY(-1200px);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateX(30deg) translateY(-1800px);
+            transform: rotateX(30deg) translateY(-1800px);
+    display: none;
+    opacity: 0;
+  }
 }
 
 @keyframes text-crawl {
   0% {
-      transform: rotateX(30deg) translateY(700px);
-      opacity: 1;
-  }
-
-  85% {
-    transform: rotateX(30deg) translateY(-1200px);
+    -webkit-transform: rotateX(30deg) translateY(700px);
+            transform: rotateX(30deg) translateY(700px);
     opacity: 1;
   }
-
+  85% {
+    -webkit-transform: rotateX(30deg) translateY(-1200px);
+            transform: rotateX(30deg) translateY(-1200px);
+    opacity: 1;
+  }
   100% {
-      transform: rotateX(30deg) translateY(-1800px);
-      display: none;
-      opacity: 0;     
+    -webkit-transform: rotateX(30deg) translateY(-1800px);
+            transform: rotateX(30deg) translateY(-1800px);
+    display: none;
+    opacity: 0;
   }
 }
 
 /*====================================
 Button
 ====================================*/
-
 .btn {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   padding: 50px;
   cursor: pointer;
   z-index: 15;
@@ -186,9 +263,11 @@ Button
   font-weight: 700;
   border-radius: 15px;
   opacity: 0.8;
+  font-size: 1rem;
 }
 
 .btn:hover,
 .btn:focus {
   opacity: 1;
 }
+/*# sourceMappingURL=style.css.map */

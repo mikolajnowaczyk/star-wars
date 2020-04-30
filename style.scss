@@ -1,0 +1,240 @@
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-size: 16px;
+}
+
+main {
+    margin: 0;
+}
+
+body {
+    background-color: black;
+    font-family: 'Poller One', serif;
+    color: rgb(255, 175, 0);
+    overflow: hidden;
+    /*because logo is too big*/
+}
+
+.star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+}
+
+.bigstar {
+    width: 2px;
+    height: 2px;
+}
+
+
+/*====================================
+Intro text
+====================================*/
+
+
+/* Center it, set the color, size and hide the text */
+
+.intro {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: rgb(75, 213, 238);
+    font-weight: 400;
+    font-size: 1.5rem;
+    opacity: 0;
+}
+
+.intro-animation {
+    animation: intro 6s ease-out 1s;
+}
+
+@keyframes intro {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+/*====================================
+Logo
+====================================*/
+
+.star-wars-logo {
+    position: absolute;
+    padding: 0;
+    height: 693px;
+    width: 419px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    background-image: url(img/logo.svg);
+    background-size: 100% 100%;
+    z-index: 1;
+    opacity: 0;
+}
+
+.animate-logo {
+    animation: logo1 13s cubic-bezier(.6, .43, .76, .93) forwards 0s, logo2 3s linear forwards 13s;
+}
+
+@keyframes logo1 {
+    0% {
+        transform: translate(-50%, -50%) scale(12);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes logo2 {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.01);
+    }
+}
+
+
+/*====================================
+Main text - crawl
+====================================*/
+
+.prespective-wrapper {
+    perspective: 250px;
+    margin-left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: 100%;
+}
+
+.text-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    /* display: none; */
+    transform: rotateX(30deg) translateY(700px);
+}
+
+.text {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.text-animation {
+    @include text-crawl(16);
+    animation: text-crawl 55s linear forwards;
+}
+
+// @keyframes text-crawl {
+//     0% {
+//         transform: rotateX(30deg) translateY(700px);
+//         opacity: 1;
+//     }
+//     85% {
+//         transform: rotateX(30deg) translateY(-1200px);
+//         opacity: 1;
+//     }
+//     100% {
+//         transform: rotateX(30deg) translateY(-1800px);
+//         display: none;
+//         opacity: 0;
+//     }
+// }
+
+
+/*====================================
+Button
+====================================*/
+
+.btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    cursor: pointer;
+    z-index: 15;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 15px;
+    opacity: 0.8;
+    font-size: 1rem;
+}
+
+.btn:hover,
+.btn:focus {
+    opacity: 1;
+}
+
+@mixin mediaQueryChange($scale-arg:16) {
+  @keyframes text-crawl {
+    0% {
+        transform: rotateX(30deg) translateY(calc(700*$scale-arg/16)px);
+        opacity: 1;
+    }
+    85% {
+        transform: rotateX(30deg) translateY(calc(-1200*$scale-arg/16)px);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateX(30deg) translateY(calc(-1800*$scale-arg/16)px);
+        display: none;
+        opacity: 0;
+    }
+  }
+
+  html {
+    font-size: $scale-arg;
+  }
+
+  .btn {
+    padding: calc(50*$scale-arg/16)px;
+    font-size: $scale-arg/16rem;
+  }
+
+  .star-wars-logo {
+    height: calc(693*$scale-arg/16)px;
+    width: calc(419*$scale-arg/16)px;
+  }
+}
+
+@media (max-width:450px) {
+  @include mediaQueryChange(6);
+}
+
+@media (max-width:700px) {
+  @include mediaQueryChange(8);
+}
+
+@media (max-width:950px) {
+  @include mediaQueryChange(12);
+}
